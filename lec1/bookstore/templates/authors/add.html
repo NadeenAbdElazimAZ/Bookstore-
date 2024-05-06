@@ -1,0 +1,27 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+{% block 'content' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Author</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Add Author</h1>
+        <div class="card">
+            <div class="card-body">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-primary">Add Author</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+{% endblock %}

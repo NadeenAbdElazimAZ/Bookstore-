@@ -1,0 +1,17 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+{% block 'content' %}
+<h1> books from database</h1>
+
+<div class="card mb-3">
+    <img src="{{book.image_url}}" width="150" height="300" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">{{book.title}}</h5>
+    <p class="card-text">the price is : {{book.price}} for the author :{{book.author}} no of pages :{{book.no_of_pages}}</p>
+    <p class="card-text">created at : {{book.created_at}}  updated at :{{book.updated_at}}</p>
+    {{book.image_url}}
+  </div>
+</div>
+
+
+{% endblock %}

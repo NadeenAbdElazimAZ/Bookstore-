@@ -1,0 +1,35 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+
+{% block 'content' %}
+
+{% if user.id %}
+<a class="btn btn-info mb-3" href="{% url 'bookstore_add'  %}">Add New Book</a>
+{% endif %}
+
+<h1>All Books</h1>
+
+<div class="row">
+  {% for book in books %}
+  <div class="col-lg-4 col-md-6 mb-4">
+    <div class="card h-100">
+      <img src="{{ book.image_url }}" class="card-img-top" alt="{{ book.title }}">
+      <div class="card-body">
+        <h5 class="card-title">{{ book.title }}</h5>
+        <p class="card-text">Price: ${{ book.price }}</p>
+        {% if user.id %}
+        <div class="btn-group" role="group">
+          <a class="btn btn-info" href="{% url 'bookstore_show' id=book.id %}">Show</a>
+          <a class="btn btn-warning" href="{{ book.edit_url }}">Edit</a>
+          <a class="btn btn-danger" href="{% url 'bookstore_delete' id=book.id %}">Delete</a>
+        </div>
+        {% else %}
+        <a class="btn btn-info" href="{% url 'bookstore_show' id=book.id %}">Show</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+{% endblock %}

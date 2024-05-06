@@ -1,0 +1,16 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+{% block 'content' %}
+<h1> {{book.name}}</h1>
+
+<h1> book profile </h1>
+<div class="card mb-3">
+    <img src="{% static 'bookstore/images/'|add:book.image %}" width="150" height="300" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">{{book.name}}</h5>
+    <p class="card-text">the price is : {{book.price}} for the author :{{book.author}} no of pages :{{book.no_of_papers}}</p>
+  </div>
+</div>
+
+
+{% endblock %}

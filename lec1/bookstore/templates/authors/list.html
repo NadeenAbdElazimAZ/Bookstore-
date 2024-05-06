@@ -1,0 +1,33 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+
+{% block 'content' %}
+<div class="container">
+    {% if user.id %}
+    <a class="btn btn-info mb-3" href="{% url 'add_author' %}">Add New Author</a> 
+    {% endif %}
+    
+    <h1 class="mb-4">All Authors</h1>
+
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
+        {% for author in authors %}
+        <div class="col mb-4">
+            <div class="card h-100">
+                <img src="{{ author.image.url }}" class="card-img-top" alt="{{ author.name }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ author.name }}</h5>
+                    <p class="card-text">Date of Birth: {{ author.bdate }}</p>
+                </div>
+                <div class="card-footer">
+                    <a class="btn btn-info btn-sm mr-2" href="{% url 'show_author_page' author.id %}">Show</a> 
+                    {% if user.id %}
+                    <a class="btn btn-warning btn-sm mr-2" href="{% url 'edit_author' author.id %}">Edit</a> 
+                    <a class="btn btn-danger btn-sm" href="{% url 'delete_author' author.id %}">Delete</a> 
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
